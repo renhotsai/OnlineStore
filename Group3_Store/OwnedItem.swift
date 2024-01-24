@@ -7,7 +7,7 @@
 
 import Foundation
 
-class OwnedItem : Item{
+class OwnedItem : Item {
     var minutesUsed : Int = 0
     
 }
