@@ -25,10 +25,31 @@ class Store {
             print("Purchase failed: Insufficient funds to buy \(item.title).")
         }
     }
-//
-//    func issueRefund(customer: Customer, itemId: Int) {
-//        customer.issueRefund(itemId: itemId)
-//    }
+
+    func issueRefund(customer: Customer, itemId: Int) {
+            guard let index = customer.itemsList.firstIndex(where: { $0.id == itemId }) else {
+                print("Refund failed: Customer doesn't own the specified item.")
+                return
+            }
+
+            let refundedItem = customer.itemsList[index]
+
+            if refundedItem.minutesUsed < 30 {
+                let refundAmount = refundedItem.price
+                customer.balance += refundAmount
+
+                // Display receipt
+                refundedItem.printReceipt(isRefund: true, amount: refundAmount)
+
+                // Remove the item
+                customer.itemsList.remove(at: index)
+
+                print("Refund successful! \(refundedItem.title) has been removed from customer's owned items.")
+            } else {
+                print("Refund failed: The item has been used for more than 30 minutes and cannot be refunded.")
+            }
+        }
+
 
     func findByTitle(keyword: String) {
         var found = false
