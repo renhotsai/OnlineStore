@@ -13,6 +13,8 @@
 		6CA5AF852B616D4F007BF057 /* OwnedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA5AF842B616D4F007BF057 /* OwnedItem.swift */; };
 		6CA5AF872B61767A007BF057 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA5AF862B61767A007BF057 /* Movie.swift */; };
 		CA544D472B5F2B4800B57F0D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA544D462B5F2B4800B57F0D /* main.swift */; };
+		CA56B95F2B61A38A0059C931 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA56B95E2B61A38A0059C931 /* Customer.swift */; };
+		CA56B9612B61A3980059C931 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA56B9602B61A3980059C931 /* Store.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -35,6 +37,8 @@
 		6CA5AF862B61767A007BF057 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		CA544D432B5F2B4800B57F0D /* Group3_Store */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Group3_Store; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA544D462B5F2B4800B57F0D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		CA56B95E2B61A38A0059C931 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
+		CA56B9602B61A3980059C931 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +77,8 @@
 				6CA5AF862B61767A007BF057 /* Movie.swift */,
 				6CA5AF842B616D4F007BF057 /* OwnedItem.swift */,
 				6CA5AF822B6169F2007BF057 /* IsPurchasable.swift */,
+				CA56B95E2B61A38A0059C931 /* Customer.swift */,
+				CA56B9602B61A3980059C931 /* Store.swift */,
 			);
 			path = Group3_Store;
 			sourceTree = "<group>";
@@ -136,7 +142,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				6CA5AF832B6169F2007BF057 /* IsPurchasable.swift in Sources */,
+				CA56B95F2B61A38A0059C931 /* Customer.swift in Sources */,
 				6CA5AF7F2B61647F007BF057 /* Item.swift in Sources */,
+				CA56B9612B61A3980059C931 /* Store.swift in Sources */,
 				6CA5AF872B61767A007BF057 /* Movie.swift in Sources */,
 				6CA5AF812B616587007BF057 /* Game.swift in Sources */,
 				6CA5AF852B616D4F007BF057 /* OwnedItem.swift in Sources */,
