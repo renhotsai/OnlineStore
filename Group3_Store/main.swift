@@ -25,10 +25,10 @@ var customer1 = Customer()
 
 //2. Creating a variety of movies and games
 var games = [
-Game(title: "CS:GO", price: 2, publisher: "Valve", isMultiplayer: true),
-Game(title: "Among Us", price: 5, publisher: "Innersloth", isMultiplayer: true),
-Game(title: "Rocket League", price: 25, publisher: "Psyonix", isMultiplayer: true),
-Game(title: "Stardew Valley", price: 15, publisher: "ConcernedApe", isMultiplayer: true),
+    Game(title: "CS:GO", price: 2, publisher: "Valve", isMultiplayer: true),
+    Game(title: "Among Us", price: 5, publisher: "Innersloth", isMultiplayer: true),
+    Game(title: "Rocket League", price: 25, publisher: "Psyonix", isMultiplayer: true),
+    Game(title: "Stardew Valley", price: 15, publisher: "ConcernedApe", isMultiplayer: true),
 ]
 
 
@@ -46,17 +46,28 @@ var store1 = Store(items: (games + movies))
 //4. Searching for an item that exists
 
 
+
+
 var action = String()
-
 repeat{
-  print("----------------------------------------------------------------------------------------------------")
-  print("|  1.search | 2.issue refund | 3.check cart | 4.buy item | 5. use item | 6. Reload fund | 7. exit  |")
-  print("----------------------------------------------------------------------------------------------------")
-  print("Select one option above: ")
-  action = readLine()!
-
-    switch action {
-    case "1":
+    print("----------------------------------------------------------------------------------------------------")
+    print("|  1.search | 2.issue refund | 3.check cart | 4.buy item | 5. use item | 6. Reload fund | 7. exit  |")
+    print("----------------------------------------------------------------------------------------------------")
+    print("Select one option above: ")
+    
+    action = readLine()!
+    
+    var actionInt:Int{
+        if Int(action) != nil{
+            return Int(action)!
+        }else{
+            return 0
+        }
+    }
+    
+    let menuAction = Menu(rawValue: actionInt)
+    switch menuAction {
+    case .search:
         print("Search Item: ")
         let searchInput = readLine()!
         do {
@@ -64,13 +75,13 @@ repeat{
         } catch Errors.itemNotFound {
             print("\nPurchase failed: Item with ID \(searchInput) not found in the store.")
         }
-
+        
         action = ""
         break
-    case "2":
+    case .issueRefund:
         print("Issue refund")
         print("----------------")
-     
+        
         for (index, item) in customer1.itemsList.enumerated() {
             print("Item id: \(index + 1) | Item title: \(item.title) | Min used: \(item.minutesUsed)")
         }
@@ -84,10 +95,10 @@ repeat{
         } catch Errors.usedOver30Min {
             print("Item \(refundItemInput) has been already used over 30 min")
         }
-
+        
         action = ""
         break
-    case "3":
+    case .checkCart:
         print("Checking cart")
         print("----------------")
         for (index, item) in customer1.itemsList.enumerated() {
@@ -96,7 +107,7 @@ repeat{
         print("")
         action = ""
         break
-    case "4":
+    case .buyItem:
         print("Buying Item: ")
         let itemInput = Int(readLine()!)!
         do {
@@ -115,7 +126,7 @@ repeat{
             print("Unexpected error: \(error)")
         }
         action = ""
-    case "5":
+    case .useItem:
         print("Use Item: ")
         for (index, item) in customer1.itemsList.enumerated() {
             print("Item id: \(index + 1) | Item title: \(item.title) | Min used: \(item.minutesUsed)")
@@ -130,17 +141,17 @@ repeat{
             print("Input \(itemNum) invalid option")
         }
         action = ""
-    case "6":
+    case .reloadFund:
         print("Reload money: ")
         let userInputAmount = Double(readLine()!)!
         do {
             try customer1.reloadAccount(amount: userInputAmount)
-        
+            
         } catch Errors.invalidInput {
             print("Input should be greater than 0")
         }
         action = ""
-    case "7":
+    case .exit:
         print("Terminated...")
         break
     default:
@@ -148,7 +159,7 @@ repeat{
         action = ""
         break
     }
-} while action.isEmpty
+} while action == ""
 
 
 
