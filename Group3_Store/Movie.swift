@@ -8,12 +8,11 @@
 import Foundation
 
 class Movie: Item{
-    private static var autoId = 0
     var runningTime : Int = 0
        
     init(title: String, price: Double, runningTime: Int) {
-        Movie.autoId += 1
-        super.init(id: Movie.autoId, title: title, price: price)
+        Item.autoId += 1
+        super.init(id: Item.autoId, title: title, price: price)
         self.runningTime = runningTime
     }
     
@@ -21,6 +20,7 @@ class Movie: Item{
         return """
             \(self.title), $\(self.price)
             Running Time: \(self.runningTime) min
+            Item ID: \(self.id)
             """
     }
 }

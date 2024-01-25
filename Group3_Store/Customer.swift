@@ -10,6 +10,7 @@ class Customer {
 
     func reloadAccount(amount: Double) {
         balance += amount
+        print("\nAccount Reloded with $ \(amount), Current Balance: $ \(self.balance)")
     }
 
     func useItem(id: Int, numMinutes: Int) {
@@ -18,5 +19,6 @@ class Customer {
         }
 
         itemsList[index].minutesUsed = numMinutes
+        print("\n\(itemsList[index].title) used for \(numMinutes) mins, Total Usage: \(itemsList[index].minutesUsed) minutes")
     }
 }
