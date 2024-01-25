@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+enum Errors : Error {
+    case itemNotFound
+    case emptyValue
+    case alreadyOwnCopy
+    case insufficientFund
+    case invalidInput
+}

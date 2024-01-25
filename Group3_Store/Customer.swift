@@ -8,17 +8,20 @@ class Customer {
         self.balance = balance
     }
 
-    func reloadAccount(amount: Double) {
+    func reloadAccount(amount: Double) throws {
+        guard amount > 0 else {
+            throw Errors.invalidInput
+        }
         balance += amount
         print("\nAccount Reloded with $ \(amount), Current Balance: $ \(self.balance)")
     }
 
     func useItem(id: Int, numMinutes: Int) {
-        guard let index = itemsList.firstIndex(where: { $0.id == id }) else {
-            return
+        if let index = itemsList.firstIndex(where: { $0.id == id }) {
+            itemsList[index].minutesUsed = numMinutes
+        } else {
+            print("Item with ID \(id) not found in the list")
         }
-
-        itemsList[index].minutesUsed = numMinutes
-        print("\n\(itemsList[index].title) used for \(numMinutes) mins, Total Usage: \(itemsList[index].minutesUsed) minutes")
     }
+
 }

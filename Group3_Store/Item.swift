@@ -22,6 +22,7 @@ class Item : IsPurchasable{
         self.title = title
         self.price = price
     }
+ 
     
     func printReceipt(isRefund: Bool, amount: Double) {
         if isRefund{

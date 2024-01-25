@@ -7,14 +7,12 @@ class Store {
         self.items = items
     }
 
-    func buyItem(customer: Customer, itemId: Int) {
-        guard let item = items.first(where: { $0.id == itemId }) else {
-            print("\nPurchase failed: Item with ID \(itemId) not found in the store.")
-            return
+    func buyItem(customer: Customer, itemId: Int) throws {
+        guard let item = items.first(where: { $0.id == itemId }) else {          
+            throw Errors.itemNotFound
         }
-
         if customer.itemsList.contains(where: { $0.id == itemId }) {
-            print("\nPurchase failed: Customer already owns a copy of \(item.title).")
+            throw Errors.alreadyOwnCopy
         } else if customer.balance >= item.price {
             customer.balance -= item.price
             let newOwnedItem = OwnedItem(id: item.id ,title: item.title, price: item.price)
@@ -22,18 +20,17 @@ class Store {
             print("\nPurchase success!")
             newOwnedItem.printReceipt(isRefund: false, amount: customer.balance)
         } else {
-            print("\nPurchase failed: Insufficient funds to buy \(item.title).")
             print("Current Balance: $ \(customer.balance)")
+            throw Errors.insufficientFund
         }
     }
 
-    func issueRefund(customer: Customer, itemId: Int) {
-            guard let index = customer.itemsList.firstIndex(where: { $0.id == itemId }) else {
-                print("\nRefund failed: Customer doesn't own the specified item.")
-                return
+    func issueRefund(customer: Customer, itemId: Int) throws {
+            guard customer.itemsList.count >= itemId  else {
+                throw Errors.invalidInput
             }
 
-            let refundedItem = customer.itemsList[index]
+            let refundedItem = customer.itemsList[itemId - 1]
 
             if refundedItem.minutesUsed < 30 {
                 let refundAmount = refundedItem.price
@@ -43,17 +40,18 @@ class Store {
                 refundedItem.printReceipt(isRefund: true, amount: refundAmount)
 
                 // Remove the item
-                customer.itemsList.remove(at: index)
+                customer.itemsList.remove(at: itemId - 1)
 
                 print("\nRefund successful! \(refundedItem.title) has been removed from customer's owned items.")
             } else {
                 print("\nRefund failed: \(refundedItem.title) has been used for more than 30 minutes and cannot be refunded.")
             }
-        }
+    }
 
 
     func findByTitle(keyword: String) {
         var found = false
+        
         for item in items {
             if item.title.lowercased().contains(keyword.lowercased()) {
                 found = true
@@ -63,6 +61,14 @@ class Store {
 
         if !found {
             print("\nSorry, no matching items found.")
+        }
+    }
+    
+    func findById(id: Int) throws -> Item {
+        if let item = items.first(where: { $0.id == id }) {
+            return item
+        } else {
+            throw Errors.itemNotFound
         }
     }
 
