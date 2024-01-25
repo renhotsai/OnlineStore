@@ -12,12 +12,12 @@ class Item : IsPurchasable{
         return ""
     }
     
-    
-    var id : Int
+    static var autoId = 0
+    var id : Int = Item.autoId
     var title : String
     var price : Double
     
-    init(id: Int, title: String, price: Double) {
+    init(id : Int, title: String, price: Double) {
         self.id = id
         self.title = title
         self.price = price
@@ -26,18 +26,18 @@ class Item : IsPurchasable{
     func printReceipt(isRefund: Bool, amount: Double) {
         if isRefund{
             print("""
-            -------------------------
+            \n-------------------------
             YOUR RECEIPT
             -------------------------
-            We are refunding the purchase of Heroes: \(self.title)
+            We are refunding the purchase: \(self.title)
             Refund amount: $\(self.price)
             """)
         }else{
             print("""
-            -------------------------
+            \n-------------------------
             YOUR RECEIPT
             -------------------------
-            Thank you for purchasing Heroes: \(self.title)
+            Thank you for purchasing: \(self.title)
             Purchase amount: $\(self.price)
             """)
         }
