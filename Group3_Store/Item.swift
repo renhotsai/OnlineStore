@@ -31,7 +31,7 @@ class Item : IsPurchasable{
             YOUR RECEIPT
             -------------------------
             We are refunding the purchase: \(self.title)
-            Refund amount: $\(self.price)
+            Refund amount: $\(self.price)\n
             """)
         }else{
             print("""
@@ -39,7 +39,7 @@ class Item : IsPurchasable{
             YOUR RECEIPT
             -------------------------
             Thank you for purchasing: \(self.title)
-            Purchase amount: $\(self.price)
+            Purchase amount: $\(self.price)\n
             """)
         }
     }

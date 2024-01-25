@@ -13,14 +13,14 @@ class Customer {
             throw Errors.invalidInput
         }
         balance += amount
-        print("\nAccount Reloded with $ \(amount), Current Balance: $ \(self.balance)")
+        print("Account Reloded with $ \(amount), Current Balance: $ \(self.balance)\n")
     }
 
-    func useItem(id: Int, numMinutes: Int) {
+    func useItem(id: Int, numMinutes: Int) throws {
         if let index = itemsList.firstIndex(where: { $0.id == id }) {
             itemsList[index].minutesUsed = numMinutes
         } else {
-            print("Item with ID \(id) not found in the list")
+            throw Errors.itemNotFound
         }
     }
 

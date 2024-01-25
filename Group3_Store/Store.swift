@@ -31,7 +31,7 @@ class Store {
             }
 
             let refundedItem = customer.itemsList[itemId - 1]
-
+      
             if refundedItem.minutesUsed < 30 {
                 let refundAmount = refundedItem.price
                 customer.balance += refundAmount
@@ -44,12 +44,12 @@ class Store {
 
                 print("\nRefund successful! \(refundedItem.title) has been removed from customer's owned items.")
             } else {
-                print("\nRefund failed: \(refundedItem.title) has been used for more than 30 minutes and cannot be refunded.")
+                throw Errors.usedOver30Min              
             }
     }
 
 
-    func findByTitle(keyword: String) {
+    func findByTitle(keyword: String) throws {
         var found = false
         
         for item in items {
@@ -60,7 +60,7 @@ class Store {
         }
 
         if !found {
-            print("\nSorry, no matching items found.")
+            throw Errors.itemNotFound
         }
     }
     
